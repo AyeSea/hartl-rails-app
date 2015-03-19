@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  root 'static_pages#home'
-  get 'static_pages/help'
-  get 'static_pages/about'
-  get 'static_pages/contact'
+  #Creates named routes root_path and root_url.
+  root             'static_pages#home'
+  #Routes HTTP GET requests for /help to the help action
+  #in the static_pages controller.
+  #Also creates named routes help_path and help_url.
+  get 'help'    => 'static_pages#help'
+  get 'about'   => 'static_pages#about'
+  get 'contact' => 'static_pages#contact'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
