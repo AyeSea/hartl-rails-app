@@ -4,10 +4,15 @@ Rails.application.routes.draw do
   #Routes HTTP GET requests for /help to the help action
   #in the static_pages controller.
   #Also creates named routes help_path and help_url.
-  get 'help'    => 'static_pages#help'
-  get 'about'   => 'static_pages#about'
-  get 'contact' => 'static_pages#contact'
-  get 'signup'  => 'users#new'
+  get     'help'    => 'static_pages#help'
+  get     'about'   => 'static_pages#about'
+  get     'contact' => 'static_pages#contact'
+  get     'signup'  => 'users#new'
+  #Routes HTTP GET requests for /login to the new action
+  #in the sessions controller.
+  get     'login'   => 'sessions#new'
+  post    'login'   => 'sessions#create'
+  delete  'logout'  => 'sessions#destroy'
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
