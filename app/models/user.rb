@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 	attr_accessor :remember_token
+  #a callback function that runs before user is saved to db
 	before_save { self.email = email.downcase }
 	#{ presence: true } is a one element options hash. 
 	#curly braces may be omitted when a hash is the final argument in a method.
