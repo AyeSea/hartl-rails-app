@@ -21,7 +21,9 @@ module SessionsHelper
 		user == current_user
 	end
 
-	#Returns the user corresponding to the remember token cookie.
+	#Returns the user corresponding to the temporary session cookie (if it exists)
+	#or the signed permament user id cookie (if it exists, i.e. the user chose
+	#"remember me" when last signing in.
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id)
