@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    #default value (i.e. if omitted) of the page key is 1 
     @users = User.paginate(page: params[:page])
   end
 

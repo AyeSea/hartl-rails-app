@@ -3,9 +3,13 @@ class PasswordResetsController < ApplicationController
   before_action :valid_user, 		   only: [:edit, :update]
   before_action :check_expiration, only: [:edit, :update]
 
+  # Renders form to initiate password reset. User is prompted for account email.
   def new
   end
 
+  # Called when user submits email in form rendered by new action.
+  # Creates password reset_digest & sends email w/ password reset instructions 
+  # if user is found (i.e. their email exists in the db).
   def create
   	@user = User.find_by(email: params[:password_reset][:email].downcase)
   	if @user
@@ -19,9 +23,13 @@ class PasswordResetsController < ApplicationController
   	end
   end
 
+  # Renders form for selecting new password. Accessed through reset link
+  # sent by the create action.
   def edit
   end
 
+  # Resets password (updates value in db). Checks that new password isn't blank 
+  # and passes validations specified in User model.
   def update
   	if password_blank?
   		flash.now[:danger] = "Password can't be blank."
@@ -68,3 +76,4 @@ class PasswordResetsController < ApplicationController
   		end
   	end
 end
+

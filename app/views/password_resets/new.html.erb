@@ -3,6 +3,8 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+  <!-- When form is submitted (PasswordResets#create), email is available 
+  		 in the params hash as params[:password_reset][:email] !-->
     <%= form_for(:password_reset, url: password_resets_path) do |f| %>
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>

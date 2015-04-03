@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-	attr_accessor :remember_token, :activation_token, :reset_token
+  #these instance variables serve as 'virtual attributes' that are not stored in the db.
+  #their values are hashed and compared to their respective digest values in the db to
+  #verify if the user is the correct/valid user
   #a callback function that calls the specified method reference before saving user to db
 	before_save :downcase_email
   before_create :create_activation_digest
