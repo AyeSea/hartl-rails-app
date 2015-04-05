@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   #these instance variables serve as 'virtual attributes' that are not stored in the db.
   #their values are hashed and compared to their respective digest values in the db to
