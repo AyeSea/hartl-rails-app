@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :microposts, dependent: :destroy
+  # Relationships where the given user is a follower, so we want to match
+  # user.id to relationships.follower_id
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
@@ -7,6 +9,10 @@ class User < ActiveRecord::Base
                                    foreign_key: "followed_id",
                                    dependent: :destroy
 
+  # Search for the followed association (as specified by source, otherwise default would
+  # be to search for the following association as specified by has_many) by going through
+  # the active_relationships association (which takes us to the relationships table).
+  # Return all 'followeds' (users) for the specified user (follower_id: user.id)                              
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower                           
   attr_accessor :remember_token, :activation_token, :reset_token
